@@ -4,6 +4,9 @@ import { NavController, NavParams,ToastController } from 'ionic-angular';
 
 import {Storage}from '@ionic/storage';
 
+import {Page1} from '../page1/page1';
+
+
 
 @Component({
   selector: 'page-page3',
@@ -21,7 +24,7 @@ export class Page3 {
     storage: Storage;
     selectedtest: Array<{title: string, selected: Boolean, id: Number}> = [];
     
-  constructor(public navCtrl: NavController, public navParams: NavParams, storage: Storage) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, storage: Storage,public toastCtrl:ToastController) {
   
   this.housecallappointment = { line1: '', line2:'', city:'', state:'', zip:''};
   this.storage = storage;
@@ -60,7 +63,20 @@ this.housecallappointment.state = defaultaddress.state;
 savedapptment.push(housecall);
 let strval = JSON.stringify(savedapptment);
 this.storage.set("user-appointments",strval );
+this.presentToast("Done");
+    this.navCtrl.setRoot(Page1);
+
   });  
-  }  
+  }
+  
+  
+  
+presentToast(message) {
+    let toast = this.toastCtrl.create({
+      message: message,
+      duration: 2000
+    });
+    toast.present();
+  }
   
 }

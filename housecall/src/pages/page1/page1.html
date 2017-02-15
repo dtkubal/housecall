@@ -26,10 +26,12 @@
         </ion-list-header>
         <ion-item-sliding *ngFor="let item of myhousecalls">
             <ion-item>
-                {{item.AppointmentDate  | date:'yyyy-MM-dd'}}
-
-             
-            </ion-item>
+            <ion-card>
+                <ion-card-content>
+                   aa {{item.AppointmentDate | date:'yyyy-MM-dd'}}
+                </ion-card-content>
+            </ion-card>
+            </ion-item>            
             <ion-item-options side="right">
                 <button ion-button color="danger">
                     <ion-icon name="trash"> </ion-icon>

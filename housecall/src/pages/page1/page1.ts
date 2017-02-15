@@ -35,5 +35,10 @@ console.log('Called');
 this.navCtrl.push(Page2);
 }
 
+deletehousecall(event, item) {
+
+
+}
+
 
 }
