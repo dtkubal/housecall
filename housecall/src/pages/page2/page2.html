@@ -1,0 +1,21 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>Select Test</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-list>
+        <button ion-item *ngFor="let item of avilabletest" (click)="itemSelected($event, item)">
+            {{ item.title }}
+           <ion-icon *ngIf="item.selected" name="checkmark" item-right color-fill="green"></ion-icon>
+        </button>
+
+    </ion-list>
+    <div padding>
+        <button ion-button color="secondary" round block (click)="movenext()" [disabled]="isDisabled">Next</button>
+    </div>
+</ion-content>

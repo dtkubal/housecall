@@ -1,0 +1,58 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>Book House Call</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-list>
+
+
+        <ion-list-header>
+            Address
+            <button ion-button color="secondary"  (click)="sethomeaddress()" block>Home</button>
+            <button ion-button color="secondary" block  >Use My Location</button>
+        </ion-list-header>
+
+        <ion-item>
+            <ion-label>Line 1</ion-label>
+            <ion-input type="text" [(ngModel)]="housecallappointment.line1" name="title"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>Line 2</ion-label>
+            <ion-input type="text" [(ngModel)]="housecallappointment.line2" name="title"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>State</ion-label>
+            <ion-input type="text" [(ngModel)]="housecallappointment.state" name="title"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>Zip</ion-label>
+            <ion-input type="text" [(ngModel)]="housecallappointment.zip" name="title"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>Date</ion-label>
+            <ion-datetime displayFormat="MMM DD, YYYY" pickerFormat="MMM DD, YYYY" [(ngModel)]="housecallappointment.Date"></ion-datetime>
+        </ion-item>
+        <ion-item>
+            <ion-label>Time</ion-label>
+            <ion-datetime displayFormat="hh:mm A" pickerFormat="hh:mm A" [(ngModel)]="housecallappointment.Time"></ion-datetime>
+        </ion-item>
+
+        <ion-list-header>
+            <h2>Test's</h2>
+        </ion-list-header>
+        <button ion-item *ngFor="let item of selectedtest">
+            {{ item.title }}
+        </button>
+
+    </ion-list>
+    <div padding>
+        <button ion-button color="secondary" (click)="save()">Book Now</button>
+
+    </div>
+
+</ion-content>

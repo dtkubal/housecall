@@ -1,0 +1,40 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>Home</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="card-background-page" padding>
+    <ion-fab top right edge>
+        <button ion-fab mini (click)="placehousecall()">
+            <ion-icon name="add"></ion-icon>
+        </button>
+    </ion-fab>
+    <ion-card>
+        <img src="img/hnlhousecallIMAGES2.jpg">
+        <ion-card-content>
+            <p>Now you can have blood work done in the comfort of your own home. click on '+' button to schedule an appointment now.</p>
+        </ion-card-content>
+        <!--        <button ion-button color="secondary" round (click)="placehousecall()">Book House Call Now</button>-->
+    </ion-card>
+    <ion-list>
+        <ion-list-header>
+            My House Call
+        </ion-list-header>
+        <ion-item-sliding *ngFor="let item of myhousecalls">
+            <ion-item>
+                {{item.AppointmentDate  | date:'yyyy-MM-dd'}}
+
+             
+            </ion-item>
+            <ion-item-options side="right">
+                <button ion-button color="danger">
+                    <ion-icon name="trash"> </ion-icon>
+                </button>
+            </ion-item-options>
+        </ion-item-sliding>
+    </ion-list>
+</ion-content>
