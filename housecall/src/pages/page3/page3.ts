@@ -6,7 +6,9 @@ import {Storage}from '@ionic/storage';
 
 import {Page1} from '../page1/page1';
 
+import { Geolocation } from 'ionic-native';
 
+import {Http} from '@angular/http';
 
 @Component({
   selector: 'page-page3',
@@ -24,7 +26,7 @@ export class Page3 {
     storage: Storage;
     selectedtest: Array<{title: string, selected: Boolean, id: Number}> = [];
     
-  constructor(public navCtrl: NavController, public navParams: NavParams, storage: Storage,public toastCtrl:ToastController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, storage: Storage,public toastCtrl:ToastController, public http: Http) {
   
   this.housecallappointment = { line1: '', line2:'', city:'', state:'', zip:''};
   this.storage = storage;
@@ -67,6 +69,32 @@ this.presentToast("Done");
     this.navCtrl.setRoot(Page1);
 
   });  
+  }
+  
+  getaddressbygeolocation() {
+  
+  Geolocation.getCurrentPosition().then((resp) => {
+ console.log(resp.coords.latitude);
+ console.log(resp.coords.longitude);
+ let url = "http://maps.googleapis.com/maps/api/geocode/json?latlng="+resp.coords.latitude + "," + resp.coords.longitude + "&sensor=true";
+  this.http.get(url).subscribe((respadd)=>{
+  let jobj = JSON.parse(respadd["_body"]);
+//city
+this.housecallappointment.city = jobj.results[0].address_components[jobj.results[0].address_components.length-4].short_name;   
+for(let comp of jobj.results)
+{
+console.log(comp);
+
+}
+
+console.log(jobj.results[0].formatted_address);
+  });
+ // resp.coords.latitude
+ // resp.coords.longitude
+}).catch((error) => {
+  console.log('Error getting location', error.toString());
+});
+  
   }
   
   

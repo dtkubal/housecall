@@ -14,7 +14,7 @@
         <ion-list-header>
             Address
             <button ion-button color="secondary"  (click)="sethomeaddress()" block>Home</button>
-            <button ion-button color="secondary" block  >Use My Location</button>
+            <button ion-button color="secondary"  (click)="getaddressbygeolocation()"  block  >Use My Location</button>
         </ion-list-header>
 
         <ion-item>
@@ -24,6 +24,10 @@
         <ion-item>
             <ion-label>Line 2</ion-label>
             <ion-input type="text" [(ngModel)]="housecallappointment.line2" name="title"></ion-input>
+        </ion-item>
+         <ion-item>
+            <ion-label>City</ion-label>
+            <ion-input type="text" [(ngModel)]="housecallappointment.city" name="title"></ion-input>
         </ion-item>
         <ion-item>
             <ion-label>State</ion-label>
