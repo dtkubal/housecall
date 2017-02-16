@@ -62,6 +62,8 @@ this.housecallappointment.state = defaultaddress.state;
   if(val != null) {
     savedapptment = JSON.parse(val);   
   }
+
+
 savedapptment.push(housecall);
 let strval = JSON.stringify(savedapptment);
 this.storage.set("user-appointments",strval );
@@ -69,7 +71,13 @@ this.presentToast("Done");
     this.navCtrl.setRoot(Page1);
 
   });  
-  }
+}
+
+cancel(event) {
+this.navCtrl.setRoot(Page1);
+
+
+}
   
   getaddressbygeolocation() {
   
