@@ -10,10 +10,13 @@
 <ion-content>
     <ion-list>
         <button ion-item *ngFor="let item of avilabletest" (click)="itemSelected($event, item)">
-            {{ item.title }}
+            <h2>{{ item.title }}</h2>
            <ion-icon *ngIf="item.selected" name="checkmark" item-right color="secondary"></ion-icon>
-        </button>
+           <p>{{item.Description}}</p>
+           <p><i>Preparation:</i></p>
+            <p>{{item.Preparation}}</p>
 
+        </button>
     </ion-list>
     <div padding>
         <button ion-button color="secondary" round block (click)="movenext()" [disabled]="isDisabled">Next</button>
