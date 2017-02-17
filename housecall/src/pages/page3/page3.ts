@@ -10,6 +10,8 @@ import { Geolocation } from 'ionic-native';
 
 import {Http} from '@angular/http';
 
+import { NativeGeocoder, NativeGeocoderReverseResult } from 'ionic-native';
+
 @Component({
   selector: 'page-page3',
   templateUrl: 'page3.html',
@@ -87,39 +89,61 @@ this.navCtrl.setRoot(Page1);
   Geolocation.getCurrentPosition().then((resp) => {
  console.log(resp.coords.latitude);
  console.log(resp.coords.longitude);
- let url = "http://maps.googleapis.com/maps/api/geocode/json?latlng="+resp.coords.latitude + "," + resp.coords.longitude + "&sensor=true";
-  this.http.get(url).subscribe((respadd)=>{
-  let jobj = JSON.parse(respadd["_body"]);
-//city
-this.housecallappointment.city = jobj.results[0].address_components[jobj.results[0].address_components.length-4].short_name;   
-for(let comp of jobj.results[0].address_components)
-{
+ let url = "https://maps.googleapis.com/maps/api/geocode/json?&latlng="+resp.coords.latitude + "," + resp.coords.longitude + "&key=AIzaSyCCyBZmNL55HQ9luWoTfGjoG_1jFDi99Tg";
  
-console.log(comp);
-switch(comp.types[0])
+
+
+
+NativeGeocoder.reverseGeocode(resp.coords.latitude, resp.coords.longitude)
+  .then((result: NativeGeocoderReverseResult) => 
+  
 {
-    case "route" :
-          this.housecallappointment.line1 = comp.short_name;
-          break;
-    case "political" :
-          this.housecallappointment.line2 += " " + comp.short_name;
-          break;
-    case "locality" :
-         this.housecallappointment.city = comp.short_name;
-         break;
-    case "postal_code" :
-          this.housecallappointment.zip = comp.short_name;
-          break;
-    case "administrative_area_level_1" :
-          this.housecallappointment.state = comp.short_name;
-          break;
-   default: 
-          break;
-}
 
-}
+          this.housecallappointment.line1 = result.houseNumber;
+          this.housecallappointment.line2 = result.street;
+         this.housecallappointment.city = result.city;
+          this.housecallappointment.zip = result.postalCode;
+          //this.housecallappointment.state = result.;
+  
+} 
+  
+  
+  )
+  .catch((error: any) => console.log(error));
 
-  });
+ 
+//   this.http.get(url).subscribe((respadd)=>{
+//   let jobj = JSON.parse(respadd["_body"]);
+// //city
+// this.housecallappointment.city = jobj.results[0].address_components[jobj.results[0].address_components.length-4].short_name;   
+// for(let comp of jobj.results[0].address_components)
+// {
+ 
+// console.log(comp);
+// switch(comp.types[0])
+// {
+//     case "route" :
+//           this.housecallappointment.line1 = comp.short_name;
+//           break;
+//     case "political" :
+//           this.housecallappointment.line2 += " " + comp.short_name;
+//           break;
+//     case "locality" :
+//          this.housecallappointment.city = comp.short_name;
+//          break;
+//     case "postal_code" :
+//           this.housecallappointment.zip = comp.short_name;
+//           break;
+//     case "administrative_area_level_1" :
+//           this.housecallappointment.state = comp.short_name;
+//           break;
+//    default: 
+//           break;
+// }
+
+// }
+
+//   });
 }).catch((error) => {
   console.log('Error getting location', error.toString());
 });

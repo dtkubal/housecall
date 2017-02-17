@@ -6,37 +6,42 @@
         <ion-title>Home</ion-title>
     </ion-navbar>
 </ion-header>
-
 <ion-content class="card-background-page" padding>
-    <ion-fab top right edge>
-        <button ion-fab mini (click)="placehousecall()">
-            <ion-icon name="add"></ion-icon>
-        </button>
-    </ion-fab>
-    <ion-card>
-        <img src="img/hnlhousecallIMAGES2.jpg">
-        <ion-card-content>
-            <p>Now you can have blood work done in the comfort of your own home. click on '+' button to schedule an appointment now.</p>
-        </ion-card-content>
-        <!--        <button ion-button color="secondary" round (click)="placehousecall()">Book House Call Now</button>-->
-    </ion-card>
-    <ion-list>
-        <ion-list-header>
-            My House Call
-        </ion-list-header>
-        <ion-item-sliding *ngFor="let item of myhousecalls">
-            <ion-item>
-            <ion-card>
-                <ion-card-content>
-                   aa {{item.AppointmentDate | date:'yyyy-MM-dd'}}
-                </ion-card-content>
-            </ion-card>
-            </ion-item>            
-            <ion-item-options side="right">
-                <button ion-button color="danger">
-                    <ion-icon name="trash"> </ion-icon>
-                </button>
-            </ion-item-options>
-        </ion-item-sliding>
-    </ion-list>
+   <ion-fab top right edge>
+       <button ion-fab mini (click)="placehousecall()">
+           <ion-icon name="add"></ion-icon>
+       </button>
+   </ion-fab>
+   <ion-card>
+       <img src="img/hnlhousecallIMAGES2.jpg">
+       <ion-card-content>
+           <p>Now you can have blood work done in the comfort of your own home. click on '+' button to schedule an appointment now.</p>
+       </ion-card-content>
+       <!--        <button ion-button color="secondary" round (click)="placehousecall()">Book House Call Now</button>-->
+   </ion-card>
+   <ion-list>
+       <ion-list-header>
+           My House Call
+       </ion-list-header>
+      <ion-item-sliding *ngFor="let item of myhousecalls">
+          <ion-item>
+          <ion-card>
+              <ion-card-content>
+               {{item.AppointmentDate | date:'yyyy-MM-dd'}}
+              </ion-card-content>
+               <ion-card-content>
+               {{item.Time}}
+              </ion-card-content>
+                          <ion-item *ngFor="let test of item.Test">
+                              {{test.title}}
+                          </ion-item>
+          </ion-card>
+          </ion-item>            
+          <ion-item-options side="right">
+              <button ion-button color="danger">
+                  <ion-icon name="trash"> </ion-icon>
+              </button>
+          </ion-item-options>
+      </ion-item-sliding>
+   </ion-list>
 </ion-content>
