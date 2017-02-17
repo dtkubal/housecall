@@ -89,13 +89,58 @@ this.navCtrl.setRoot(Page1);
   let jobj = JSON.parse(respadd["_body"]);
 //city
 this.housecallappointment.city = jobj.results[0].address_components[jobj.results[0].address_components.length-4].short_name;   
-for(let comp of jobj.results)
+for(let comp of jobj.results[0].address_components)
 {
+ 
 console.log(comp);
+switch(comp.types[0])
+{
+    case "route" :
+          this.housecallappointment.line1 = comp.short_name;
+          break;
+    case "political" :
+          this.housecallappointment.line2 += " " + comp.short_name;
+          break;
+    case "locality" :
+         this.housecallappointment.city = comp.short_name;
+         break;
+    case "postal_code" :
+          this.housecallappointment.zip = comp.short_name;
+          break;
+    case "administrative_area_level_1" :
+          this.housecallappointment.state = comp.short_name;
+          break;
+   default: 
+          break;
+}
+
+//   if(comp.types[0] == "route")
+// {
+//   this.housecallappointment.line1 = comp.short_name;
+// }
+
+//   if(comp.types[0] == "political")
+// {
+//   this.housecallappointment.line2 += " " + comp.short_name;
+// }
+//   if(comp.types[0] == "locality")
+// {
+//   this.housecallappointment.city = comp.short_name;
+// }
+//   if(comp.types[0] == "postal_code")
+// {
+//   this.housecallappointment.zip = comp.short_name;
+// }
+//   if(comp.types[0] == "administrative_area_level_1")
+// {
+//   this.housecallappointment.state = comp.short_name;
+// }
+
+
 
 }
 
-console.log(jobj.results[0].formatted_address);
+//console.log(jobj.results[0].formatted_address);
   });
  // resp.coords.latitude
  // resp.coords.longitude
