@@ -12,6 +12,8 @@ import {Http} from '@angular/http';
 
 import { NativeGeocoder, NativeGeocoderReverseResult } from 'ionic-native';
 
+import {Calendar} from 'ionic-native';
+
 @Component({
   selector: 'page-page3',
   templateUrl: 'page3.html',
@@ -70,8 +72,22 @@ this.housecallappointment.state = defaultaddress.state;
 
 
 savedapptment.push(housecall);
+
 let strval = JSON.stringify(savedapptment);
 this.storage.set("user-appointments",strval );
+//Add Calendar event
+let location = housecall.Address.line1 + ", " + housecall.Address.line2 + ", " + housecall.Address.city + ", " + housecall.Address.state + ", " + housecall.Address.zip;
+ let appdate  = new Date( Date.parse(this.housecallappointment.Date));
+
+Calendar.createEvent("HNL House Call Schedule",location, "You have houuse call schedule", appdate, appdate).then((msg)=> {
+console.log(msg);
+
+}, (err)=>{
+console.log(err);
+
+});
+
+
 this.presentToast("Done");
     this.navCtrl.setRoot(Page1);
 
