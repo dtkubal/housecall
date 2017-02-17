@@ -12,14 +12,23 @@
 
 
         <ion-list-header>
-            Address
-            <button ion-button color="secondary"  (click)="sethomeaddress()" block>Home</button>
-            <button ion-button color="secondary"  (click)="getaddressbygeolocation()"  block  >Use My Location</button>
+            <b><h2>Address</h2></b>
+            <!--<button ion-button color="secondary"  (click)="sethomeaddress()" block>Home</button>
+            <button ion-button color="secondary"  (click)="getaddressbygeolocation()"  block  >Use My Location</button>-->
         </ion-list-header>
 
         <ion-item>
             <ion-label>Line 1</ion-label>
-            <ion-input type="text" [(ngModel)]="housecallappointment.line1" name="title"></ion-input>
+            <ion-input type="text" [(ngModel)]="housecallappointment.line1" name="title">
+
+               
+            </ion-input>
+             <button ion-button icon-only item-right  (click)="sethomeaddress()" >
+                    <ion-icon name="home"></ion-icon>
+            </button>
+             <button ion-button icon-only item-right (click)="getaddressbygeolocation()">
+                    <ion-icon name="locate"></ion-icon>
+            </button>
         </ion-item>
         <ion-item>
             <ion-label>Line 2</ion-label>
@@ -39,21 +48,23 @@
         </ion-item>
         <ion-item>
             <ion-label>Date</ion-label>
-            <ion-datetime displayFormat="MMM DD, YYYY" pickerFormat="MMM DD, YYYY" [(ngModel)]="housecallappointment.Date"></ion-datetime>
+            <ion-datetime min="2017-02-17"   displayFormat="MMM DD, YYYY" pickerFormat="MMM DD, YYYY" [(ngModel)]="housecallappointment.Date">
+            <button item-right>Today</button>
+            </ion-datetime>
+                   <button item-right ion-button color="secondary" (click)="setdatetoday()"> Today</button>
+                   <button item-right ion-button color="danger" (click)="setdatetomorrow()">Tomorrow</button>
+
         </ion-item>
         <ion-item>
             <ion-label>Time</ion-label>
-            <ion-datetime displayFormat="hh:mm A" pickerFormat="hh:mm A" [(ngModel)]="housecallappointment.Time"></ion-datetime>
+            <ion-datetime displayFormat="hh:mm A" pickerFormat="hh:mm A" [(ngModel)]="housecallappointment.Time" hourValues="07,08,09,10,11,12,13,14,15,16,17"></ion-datetime>
+       <button item-right ion-button color="secondary" (click)="settimenow()">Now</button>
         </ion-item>
-
         <ion-list-header>
-            <h2>Test's</h2>
+            <b><h2>Selected Tests</h2></b>
         </ion-list-header>
-        <button ion-item *ngFor="let item of selectedtest">
-            {{ item.title }}
-        </button>
-
-    </ion-list>
+         <ion-item *ngFor="let item of selectedtest"> {{ item.title }}</ion-item>               
+       </ion-list>
     <div padding>
         <button ion-button color="secondary" (click)="save()">Book Now</button>
         <button ion-button color="secondary" (click)="cancel()">Cancel</button>

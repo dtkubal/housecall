@@ -25,13 +25,16 @@ export class Page3 {
     housecallappointment;
     storage: Storage;
     selectedtest: Array<{title: string, selected: Boolean, id: Number}> = [];
-    
+    mindate: String;
+
   constructor(public navCtrl: NavController, public navParams: NavParams, storage: Storage,public toastCtrl:ToastController, public http: Http) {
-  
+    
   this.housecallappointment = { line1: '', line2:'', city:'', state:'', zip:''};
   this.storage = storage;
   this.storage.get("user-selectedtest").then((val)=> {
    this.selectedtest = JSON.parse(val);
+   this.mindate =   new Date().toISOString().slice(0, 10);;
+   console.log(this.mindate);
   });
   
   }
@@ -114,36 +117,9 @@ switch(comp.types[0])
           break;
 }
 
-//   if(comp.types[0] == "route")
-// {
-//   this.housecallappointment.line1 = comp.short_name;
-// }
-
-//   if(comp.types[0] == "political")
-// {
-//   this.housecallappointment.line2 += " " + comp.short_name;
-// }
-//   if(comp.types[0] == "locality")
-// {
-//   this.housecallappointment.city = comp.short_name;
-// }
-//   if(comp.types[0] == "postal_code")
-// {
-//   this.housecallappointment.zip = comp.short_name;
-// }
-//   if(comp.types[0] == "administrative_area_level_1")
-// {
-//   this.housecallappointment.state = comp.short_name;
-// }
-
-
-
 }
 
-//console.log(jobj.results[0].formatted_address);
   });
- // resp.coords.latitude
- // resp.coords.longitude
 }).catch((error) => {
   console.log('Error getting location', error.toString());
 });
@@ -151,6 +127,25 @@ switch(comp.types[0])
   }
   
   
+setdatetoday(event) {
+this.housecallappointment.Date  = new Date().toISOString();
+
+}
+
+setdatetomorrow(event) {
+  var currentDate = new Date();
+currentDate.setDate(currentDate.getDate() + 1);
+this.housecallappointment.Date  = currentDate.toISOString();
+
+
+}
+
+settimenow(event) {
+this.housecallappointment.Time  = new Date().toISOString(); 
+
+
+}
+
   
 presentToast(message) {
     let toast = this.toastCtrl.create({
