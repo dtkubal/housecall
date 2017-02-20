@@ -9,16 +9,18 @@
 
 <ion-content>
     <ion-list>
-        <button ion-item *ngFor="let item of avilabletest" (click)="itemSelected($event, item)">
-            <h2>{{ item.title }}</h2>
-           <ion-icon *ngIf="item.selected" name="checkmark" item-right color="secondary"></ion-icon>
-           <p>{{item.Description}}</p>
-           <p><i>Preparation:</i></p>
-            <p>{{item.Preparation}}</p>
-
-        </button>
-    </ion-list>
-    <div padding>
-        <button ion-button color="secondary" round block (click)="movenext()" [disabled]="isDisabled">Next</button>
-    </div>
+      <button ion-item *ngFor="let item of avilabletest" (click)="itemSelected($event, item)">
+   <ion-thumbnail item-left>
+      <img src="{{item.imgsrc}}">
+   </ion-thumbnail>
+   <h2>{{ item.title }}</h2>
+     <ion-icon *ngIf="item.selected" name="checkmark" item-right color="secondary"></ion-icon>
+   <p>{{item.Description}}</p>
+     <p><i>Preparation:</i></p>
+           <p>{{item.Preparation}}</p>
+ </button>
+    </ion-list>  
+<ion-fab right bottom>
+         <button ion-fab color="{{isDisabled ? 'danger' : 'secondary'}}" [disabled]="isDisabled" (click)="movenext()" ><ion-icon name="arrow-dropright"></ion-icon></button>   
+     </ion-fab>
 </ion-content>
