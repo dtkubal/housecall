@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+{{ test.title }}    
+</ion-title>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">
+        <span ion-text color="primary" >Cancel</span>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+   <img src="{{test.imgsrc}}">
+   <h2>{{ test.title }} </h2>
+   
+   <p>{{test.Description}}</p>
+  
+     <p><i>Preparation:</i></p>
+           <p>{{test.Preparation}}</p>
+</ion-content>
