@@ -4,6 +4,8 @@ import { NavController } from 'ionic-angular';
 
 import {Page2} from '../page2/page2';
 
+import {Page3} from '../page3/page3';
+
 import {Storage}from '@ionic/storage';
 
 

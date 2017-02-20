@@ -13,7 +13,6 @@ import {Http} from '@angular/http';
 import { NativeGeocoder, NativeGeocoderReverseResult } from 'ionic-native';
 
 import {Calendar} from 'ionic-native';
-
 @Component({
   selector: 'page-page3',
   templateUrl: 'page3.html',

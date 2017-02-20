@@ -13,7 +13,7 @@
        </button>
    </ion-fab>
    <ion-card>
-       <img src="assets/img/hnlhousecallIMAGES1.jpg">
+       <img src="assets/img/hnlhousecallIMAGES2.jpg">
        <ion-card-content>
            <p>Now you can have blood work done in the comfort of your own home. click on '+' button to schedule an appointment now.</p>
        </ion-card-content>
@@ -25,17 +25,19 @@
        </ion-list-header>
       <ion-item-sliding *ngFor="let item of myhousecalls">
           <ion-item>
-          <ion-card>
-              <ion-card-content>
-               {{item.AppointmentDate | date:'yyyy-MM-dd'}}
-              </ion-card-content>
-               <ion-card-content>
-               {{item.Time}}
-              </ion-card-content>
-                          <ion-item *ngFor="let test of item.Test">
-                              {{test.title}}
-                          </ion-item>
-          </ion-card>
+  <ion-card>
+      
+  <ion-item>
+  <h2 *ngFor="let test of item.Test">{{test.title}}</h2>
+  </ion-item>
+  <ion-item>
+    <span item-left>{{item.AppointmentDate | date:'yyyy MMM dd hh:mm'}}</span>
+    <button ion-button icon-left clear item-right>
+      <ion-icon name="call"></ion-icon>
+      Call
+    </button>
+  </ion-item>
+</ion-card>
           </ion-item>            
           <ion-item-options side="right">
               <button ion-button color="danger">

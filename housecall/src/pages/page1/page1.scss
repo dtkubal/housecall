@@ -3,11 +3,11 @@ page-page1 {
 
   ion-card {
     position: relative;
-    text-align: center;
+    text-align: left;
   }
 
   .card-title {
-    position: absolute;
+    position: left;
     top: 36%;
     font-size: 2.0em;
     width: 100%;
@@ -22,6 +22,5 @@ page-page1 {
     width: 100%;
     color: #004D40;
   }
-
 }
 }
