@@ -17,12 +17,7 @@ import {Calendar} from 'ionic-native';
   selector: 'page-page3',
   templateUrl: 'page3.html',
     providers : [Storage]
-
 })
-
-
-
-
 export class Page3 {
   
     housecallappointment;

@@ -89,13 +89,8 @@ presentToast(name, isaddedd) {
 
   showtest(event, item) {
      event.stopPropagation();
-
 this.testtoview = item;
   let modal = this.modalCtrl.create(Page4, {itemstring : JSON.stringify(item)});
     modal.present();
   }
-
-
-  
-  
 }
