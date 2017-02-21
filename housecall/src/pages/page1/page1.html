@@ -38,26 +38,24 @@
     </button>
   </ion-item>
 </ion-card>
--->   
-        	<div class="project project-radius project-primary">
+-->   <ion-card class="project project-radius project-primary">
 				<div class="shape">
 				</div>
 				<div class="project-content">
-                    <ion-item>
+                   <ion-item>
 					<h3 class="lead" *ngFor="let test of item.Test">
 						{{test.title}}
 					</h3>
-                        </ion-item>
-                    <ion-item>
+                    </ion-item>
+                   <ion-item>    
     <span item-left>{{item.AppointmentDate | date:'yyyy MMM dd hh:mm'}}</span>
     <button ion-button icon-left clear item-right>
       <ion-icon name="call"></ion-icon>
       Call
     </button>
-  </ion-item>   
+  </ion-item>      
                 </div>
-			</div>
-
+</ion-card>
           </ion-item>
           <ion-item-options side="right">
               <button ion-button color="danger">
