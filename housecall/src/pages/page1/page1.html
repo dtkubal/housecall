@@ -21,7 +21,7 @@
    </ion-card>
    <ion-list>
        <ion-list-header>
-           My House Call
+           <h1>My House Call</h1>
        </ion-list-header>
       <ion-item-sliding *ngFor="let item of myhousecalls">
           <ion-item>
@@ -42,13 +42,23 @@
 				<div class="shape">
 				</div>
 				<div class="project-content">
-                   <ion-item>
+                <span item-left>
+                    <h1>
+                    <ion-icon name="calendar"></ion-icon>
+                {{item.AppointmentDate | date:'dd MMM yyyy'}} 
+                               <small> {{item.Time | date:'h:mm a'}}</small>
+
+                </h1>
+
+                </span>
+                 <div class = "col"></div>
+
+                   <ion-item>  
 					<h3 class="lead" *ngFor="let test of item.Test">
 						{{test.title}}
 					</h3>
                     </ion-item>
                    <ion-item>    
-    <span item-left>{{item.AppointmentDate | date:'yyyy MMM dd hh:mm'}}</span>
     <button ion-button icon-left clear item-right>
       <ion-icon name="call"></ion-icon>
       Call
