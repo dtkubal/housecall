@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,OnInit  } from '@angular/core';
 
 import { NavController, NavParams,ToastController } from 'ionic-angular';
 
@@ -12,13 +12,17 @@ import {Http} from '@angular/http';
 
 import { NativeGeocoder, NativeGeocoderReverseResult } from 'ionic-native';
 
+import {FormGroup, FormBuilder, Validators} from '@angular/forms';
+
+
+
 import {Calendar} from 'ionic-native';
 @Component({
   selector: 'page-page3',
   templateUrl: 'page3.html',
     providers : [Storage]
 })
-export class Page3 {
+export class Page3 implements OnInit {
   
     housecallappointment;
     storage: Storage;
@@ -35,7 +39,18 @@ export class Page3 {
    console.log(this.mindate);
   });
   
-  }
+}
+
+ngOnInit() : void {
+this.buildForm();
+
+}
+
+buildForm() : void {
+
+
+
+}
   
   sethomeaddress(event) {
   let defaultaddress = this.gethomeaddress();
