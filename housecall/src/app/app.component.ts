@@ -15,7 +15,7 @@ import { FaqTilesPage } from '../pages/faq-tiles/faq-tiles';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = FaqTilesPage;
+  rootPage: any = Page1;
 
   pages: Array<{title: string, component: any}>;
 

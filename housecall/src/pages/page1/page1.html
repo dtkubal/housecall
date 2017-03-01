@@ -7,6 +7,10 @@
     </ion-navbar>
 </ion-header>
 <ion-content class="card-background-page" padding>
+    <button ion-button clear small color="danger" icon-left (click)="shareonemail($event)">
+          <ion-icon name='share-alt'></ion-icon>
+          Share
+</button>
    <ion-fab top right edge>
        <button ion-fab mini (click)="placehousecall()">
            <ion-icon name="add"></ion-icon>
@@ -74,4 +78,66 @@
           </ion-item-options>
       </ion-item-sliding>
    </ion-list>
+   
+
+
+   <ion-card>
+
+
+   </ion-card>
+ 
+ 
+         <div class="col-md-6">
+
+ <div padding>
+  <ion-segment  color="secondary" [(ngModel)]="graphtype">
+    <ion-segment-button value="Weekly">
+     Weekly
+    </ion-segment-button>
+    <ion-segment-button value="Monthly" >
+      Monthly
+    </ion-segment-button>
+      <ion-segment-button value="All" >
+      All
+    </ion-segment-button>
+  </ion-segment>
+</div>
+    <canvas baseChart [hidden]="!(graphtype == 'Weekly')"
+                [datasets]= "lineChartData"
+                [labels]="lineChartLabels"
+                [chartType]="lineChartType" 
+                ></canvas>
+
+    <canvas baseChart [hidden]="!(graphtype == 'Monthly')"
+                [datasets]= "MonthlyChartData"
+                [labels]="MonthlyLabels"
+                [chartType]="MonthlyChartType"
+                ></canvas>
+<div  [hidden]="!(graphtype == 'All')">    
+           <canvas baseChart
+                [datasets]= "AllChartData"
+                [labels]="AllLabels"
+                [chartType]="AlllChartType" 
+                ></canvas>
+
+</div>
+           
+    </div>
+    <ion-grid class="button-group">
+  <ion-row>
+    <ion-col width-65>
+    </ion-col>    
+    <ion-col width-12>
+      <button ion-button block outline><img src="assets/img/Line-Chart-icon.png" (click)="setgraph('line')" />
+</button>
+    </ion-col >
+    <ion-col  width-12>
+      <button ion-button block color="secondary" outline  (click)="setgraph('bar')"><img src="assets/img/bar-chart-icon-63290.png"/></button>
+    </ion-col>  
+    <ion-col  width-12>
+      <button ion-button block  color="danger" outline  (click)="setgraph('doughnut')"><img src="assets/img/pie-chart-4.png"/></button>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
 </ion-content>
